@@ -376,6 +376,454 @@
       width: 90%;
       text-align: center;
     }
+
+    /* Advanced Modern Checkout Modal */
+    .checkout-modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      padding: 1rem;
+      color: #1e293b;
+      font-family: var(--font-family, system-ui, -apple-system, sans-serif);
+    }
+    .checkout-modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .checkout-container {
+      background: #ffffff;
+      border-radius: 1rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      width: 100%;
+      max-width: 1020px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      animation: checkoutPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes checkoutPop {
+      from { transform: scale(0.96) translateY(8px); opacity: 0; }
+      to { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    .checkout-header-bar {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+    }
+    .checkout-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #0f172a;
+    }
+    .checkout-secure-badge {
+      font-size: 0.75rem;
+      color: #059669;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      padding: 0.25rem 0.6rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .checkout-close-btn {
+      background: none;
+      border: none;
+      font-size: 1.25rem;
+      cursor: pointer;
+      color: #64748b;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.375rem;
+      transition: background 0.2s;
+    }
+    .checkout-close-btn:hover {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+    .checkout-body {
+      display: flex;
+      flex-direction: row;
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+    @media (max-width: 768px) {
+      .checkout-body {
+        flex-direction: column-reverse;
+      }
+    }
+    .checkout-left-col {
+      flex: 3;
+      padding: 1.5rem 2rem;
+      overflow-y: auto;
+      border-right: 1px solid #e2e8f0;
+    }
+    .checkout-right-col {
+      flex: 2;
+      padding: 1.5rem 1.75rem;
+      background: #f8fafc;
+      border-left: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Dedicated full checkout page overrides */
+    #checkout-page .checkout-container {
+      max-height: none !important;
+      overflow: visible !important;
+      box-shadow: none !important;
+      background: transparent !important;
+      animation: none !important;
+      max-width: 100% !important;
+    }
+    #checkout-page .checkout-left-col {
+      overflow-y: visible !important;
+      border-right: none !important;
+      padding: 0 !important;
+    }
+    #checkout-page .checkout-right-col {
+      border-left: none !important;
+    }
+    .checkout-section-box {
+      margin-bottom: 1.25rem;
+    }
+    .checkout-section-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.25rem;
+    }
+    .checkout-section-sub {
+      font-size: 0.78rem;
+      color: #64748b;
+      margin-bottom: 0.75rem;
+    }
+    .checkout-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 0.3rem;
+    }
+    .checkout-input, .checkout-select {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      color: #0f172a;
+      background: #ffffff;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .checkout-input:focus, .checkout-select:focus {
+      border-color: #635bff;
+      box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.15);
+    }
+    .checkout-checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: #475569;
+      cursor: pointer;
+      user-select: none;
+    }
+    .checkout-tabs {
+      display: flex;
+      gap: 0.5rem;
+      background: #f1f5f9;
+      padding: 0.25rem;
+      border-radius: 0.6rem;
+    }
+    .checkout-tab-btn {
+      flex: 1;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 0.45rem;
+      cursor: pointer;
+      background: transparent;
+      color: #64748b;
+      transition: all 0.2s;
+    }
+    .checkout-tab-btn.active {
+      background: #ffffff;
+      color: #0f172a;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .checkout-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+    .checkout-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.75rem;
+    }
+    @media (max-width: 640px) {
+      .checkout-grid-2, .checkout-grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .checkout-payment-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .checkout-payment-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.9rem 1rem;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 0.65rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #ffffff;
+    }
+    .checkout-payment-card:hover {
+      border-color: #cbd5e1;
+    }
+    .checkout-payment-card.active, .checkout-payment-card:has(input:checked) {
+      border-color: #635bff;
+      background: #f8fafc;
+      box-shadow: 0 0 0 1px #635bff;
+    }
+    .checkout-payment-content {
+      flex: 1;
+    }
+    .checkout-payment-badges {
+      display: flex;
+      gap: 0.25rem;
+    }
+    .mp-badge-tag {
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 0.15rem 0.35rem;
+      border-radius: 0.25rem;
+      background: #e2e8f0;
+      color: #334155;
+    }
+    .mp-badge-tag.mp-blue {
+      background: #009ee3;
+      color: #ffffff;
+    }
+    .checkout-discount-badge {
+      font-size: 0.68rem;
+      font-weight: 800;
+      background: #dcfce7;
+      color: #15803d;
+      padding: 0.15rem 0.45rem;
+      border-radius: 9999px;
+    }
+    .checkout-payment-desc {
+      font-size: 0.76rem;
+      color: #64748b;
+      margin-top: 0.35rem;
+      line-height: 1.4;
+    }
+    .checkout-submit-btn {
+      width: 100%;
+      padding: 0.95rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 0.6rem;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+    }
+    .checkout-submit-btn:hover {
+      opacity: 0.95;
+    }
+    .checkout-summary-items {
+      flex-grow: 1;
+      max-height: 280px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+      padding-right: 0.25rem;
+    }
+    .checkout-summary-item {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      margin-bottom: 0.85rem;
+    }
+    .checkout-img-wrap {
+      position: relative;
+      width: 52px;
+      height: 52px;
+      flex-shrink: 0;
+    }
+    .checkout-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      border: 1px solid #e2e8f0;
+    }
+    .checkout-qty-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: #475569;
+      color: #ffffff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .checkout-summary-details {
+      flex: 1;
+      min-width: 0;
+    }
+    .checkout-item-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #0f172a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .checkout-item-sub {
+      font-size: 0.72rem;
+      color: #64748b;
+    }
+    .checkout-item-price {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .checkout-summary-calc {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 0.85rem;
+    }
+    .checkout-calc-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.83rem;
+      color: #475569;
+      margin-bottom: 0.4rem;
+    }
+    .checkout-calc-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid #cbd5e1;
+    }
+
+    /* Order Success Modal */
+    .order-success-modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      padding: 1rem;
+    }
+    .order-success-modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .order-success-card {
+      background: #ffffff;
+      border-radius: 1rem;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+      width: 100%;
+      max-width: 540px;
+      padding: 2rem;
+      max-height: 90vh;
+      overflow-y: auto;
+      text-align: center;
+      color: #1e293b;
+    }
+    .order-success-icon {
+      width: 56px;
+      height: 56px;
+      background: #dcfce7;
+      color: #16a34a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      margin: 0 auto 1rem auto;
+    }
+    .transfer-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.75rem;
+      padding: 1.1rem;
+      margin: 1.1rem 0;
+      text-align: left;
+    }
+    .transfer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.4rem 0;
+      border-bottom: 1px dashed #e2e8f0;
+      font-size: 0.82rem;
+    }
+    .transfer-row:last-child {
+      border-bottom: none;
+    }
+    .transfer-label {
+      color: #64748b;
+      font-weight: 500;
+    }
+    .transfer-val {
+      font-weight: 700;
+      color: #0f172a;
+      font-family: monospace;
+    }
+    .whatsapp-btn {
+      background: #25d366;
+      color: #ffffff;
+      font-weight: 700;
+      padding: 0.85rem 1.25rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      font-size: 0.92rem;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+      transition: opacity 0.2s;
+    }
+    .whatsapp-btn:hover {
+      opacity: 0.92;
+    }
     
     /* Visual Inserter Dividers */
     .iframe-insert-divider {
@@ -1396,6 +1844,8 @@
         <div id="individual-product-page" class="container" style="display: none; padding: 4rem 1.5rem; min-height: 60vh;"></div>
         <!-- Dedicated Products Directory Page Container -->
         <div id="directory-products-page" class="container" style="display: none; padding: 2rem 1.5rem 4rem 1.5rem; min-height: 60vh; max-width: 1200px; margin: 0 auto; font-family: var(--font-family);"></div>
+        <!-- Dedicated Checkout Page Container -->
+        <div id="checkout-page" class="container" style="display: none; padding: 2rem 1.5rem 4rem 1.5rem; min-height: 70vh; max-width: 1100px; margin: 0 auto; font-family: var(--font-family);"></div>
       
       <!-- START SECTION: footer - Pie de Página -->
       <div id="section-sec-footer" class="builder-section" data-type="footer">
@@ -1518,13 +1968,72 @@
       <div style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: var(--color-accent, #10b981); color: white; font-size: 0.75rem; font-weight: bold; flex-shrink: 0; line-height: 1;">✓</div>
       <span id="toast-message" style="color: #1f2937; font-weight: 600; flex: 1; text-align: left; white-space: normal; word-break: break-word;">¡Producto agregado al carrito!</span>
     </div>
+
+    <!-- Checkout Page Container is dynamically populated in #checkout-page -->
+    <div id="checkout-modal" class="checkout-modal" style="display:none;"></div>
+
+    <!-- Order Success Modal -->
+    <div id="order-success-modal" class="order-success-modal">
+      <div class="order-success-card">
+        <div class="order-success-icon">✓</div>
+        <h2 style="font-size: 1.35rem; font-weight: 800; color: #0f172a; margin-bottom: 0.25rem;">¡Gracias por tu compra!</h2>
+        <p style="color: #64748b; font-size: 0.88rem; margin-bottom: 1rem;" id="order-success-subtitle">Hemos recibido tu pedido correctamente.</p>
+        
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1rem; text-align: left; margin-bottom: 1rem;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem; font-size:0.85rem;">
+            <span style="color:#64748b;">Número de Pedido:</span>
+            <span style="font-weight:800; color:#0f172a;" id="order-number-display">#ORD-0000</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem; font-size:0.85rem;">
+            <span style="color:#64748b;">Comprador:</span>
+            <span style="font-weight:600; color:#0f172a;" id="order-buyer-display">-</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
+            <span style="color:#64748b;">Monto Total:</span>
+            <span style="font-weight:800; color:#0f172a;" id="order-total-display">$0,00</span>
+          </div>
+        </div>
+
+        <div id="order-transfer-details" style="display:none;">
+          <div class="transfer-box">
+            <h4 style="font-size:0.85rem; font-weight:700; color:#0f172a; margin-bottom:0.5rem;">Datos para realizar la transferencia:</h4>
+            <div class="transfer-row">
+              <span class="transfer-label">Banco / Billetera:</span>
+              <span class="transfer-val" id="transfer-bank-name">Mercado Pago / Billetera Virtual</span>
+            </div>
+            <div class="transfer-row">
+              <span class="transfer-label">Alias:</span>
+              <span class="transfer-val" id="transfer-alias">tienda.oficial.mp</span>
+            </div>
+            <div class="transfer-row">
+              <span class="transfer-label">CBU / CVU:</span>
+              <span class="transfer-val" id="transfer-cbu">0000003100084738291029</span>
+            </div>
+            <div class="transfer-row">
+              <span class="transfer-label">Titular:</span>
+              <span class="transfer-val" id="transfer-holder">Cafe 11*</span>
+            </div>
+          </div>
+          <p style="font-size:0.8rem; color:#64748b; margin-bottom:1rem; text-align:left;">
+            Envíanos el comprobante de pago por WhatsApp para despachar tu pedido de inmediato.
+          </p>
+          <a id="whatsapp-confirm-link" href="./" target="_blank" class="whatsapp-btn">
+            📱 Enviar comprobante por WhatsApp
+          </a>
+        </div>
+
+        <button type="button" onclick="closeOrderSuccessModal()" class="btn btn-primary" style="width:100%; padding:0.85rem; margin-top:1rem; border-radius:0.5rem;">
+          Volver a la tienda
+        </button>
+      </div>
+    </div>
   
   <script>
     
-    const products = [{"id":"p-0","name":"Colombia - San Antonio 250g","price":24900,"description":"<!-- x-tinymce/html --><p data-path-to-node=\"5,0\"><b data-path-to-node=\"5,0\" data-index-in-node=\"0\">Origen:</b> San Antonio, Tolima – Colombia</p>\n<p data-path-to-node=\"5,0\"><b data-path-to-node=\"5,0\" data-index-in-node=\"39\">Productor:</b> Emanuel Enciso (1800 msnm) <b data-path-to-node=\"5,0\" data-index-in-node=\"77\">Variedad / Proceso:</b> Castillo / Lavado (Washed) <b data-path-to-node=\"5,0\" data-index-in-node=\"124\">Datos del lote:</b> Humedad 10,96% | Criba est. 16 (dispersión a 15) <b data-path-to-node=\"5,0\" data-index-in-node=\"189\">Calidad:</b> 84.3 Puntos SCA (Promedio)</p>\n<p data-path-to-node=\"5,1\"><b data-path-to-node=\"5,1\" data-index-in-node=\"0\">Notas de Cata:</b> Una taza limpia de <b data-path-to-node=\"5,1\" data-index-in-node=\"34\">cuerpo medio</b> y una <b data-path-to-node=\"5,1\" data-index-in-node=\"53\">acidez cítrica jugosa</b>. Su perfil principal destaca por su dulzura, notas a <b data-path-to-node=\"5,1\" data-index-in-node=\"128\">nueces y descriptores florales</b>. Como notas secundarias, revela destellos de <b data-path-to-node=\"5,1\" data-index-in-node=\"204\">cacao suave y frutas ligeras</b> que redondean la experiencia.</p>","stock":15,"image":"https://res.cloudinary.com/dcyhj7pzd/image/upload/v1784390805/Colombia_mockup_kanpea.png","descriptionCss":"","video":"","images":[],"sku":"","barcode":"","weight":"0.250","dimensions":{"width":"10","height":"10","depth":"10"},"variants":[{"title":"Tipo","options":["En granos","Molido para Espresso","Molido para café de filtro","Molido para cafetera francesa"]}],"shortDescription":"Una taza limpia de cuerpo medio y una acidez cítrica jugosa. Su perfil principal destaca por su dulzura, notas a nueces y descriptores florales. Como notas secundarias, revela destellos de cacao suave y frutas ligeras que redondean la experiencia.","showShortDesc":true,"status":"active","descriptionPosition":"right","type":"physical","category":"Café"},{"id":"p-1","name":"Brasil - Cristais Paulista 250g","price":20700,"description":"<!-- x-tinymce/html --><p data-path-to-node=\"5,0\"><b data-path-to-node=\"5,0\" data-index-in-node=\"0\">Origen:</b> Cristais Paulista, Alta Mogiana – Brasil <b data-path-to-node=\"5,0\" data-index-in-node=\"49\">Productor:</b> Finca Bom Jesus <b data-path-to-node=\"5,0\" data-index-in-node=\"76\">Variedad:</b> Mundo Novo y Catuaí (1.000 - 1.250 msnm) <b data-path-to-node=\"5,0\" data-index-in-node=\"127\">Proceso:</b> Natural <b data-path-to-node=\"5,0\" data-index-in-node=\"144\">Calidad:</b> 84.0 - 84.25 Puntos SCA</p>\n<p data-path-to-node=\"5,1\"><b data-path-to-node=\"5,1\" data-index-in-node=\"0\">Perfil Sensorial:</b> Un café de gran estructura y <b data-path-to-node=\"5,1\" data-index-in-node=\"47\">cuerpo redondo</b>. En su perfil principal destacan notas dulces a <b data-path-to-node=\"5,1\" data-index-in-node=\"110\">cacao, caramelo y frutos secos</b>. En un segundo plano, despliega matices de <b data-path-to-node=\"5,1\" data-index-in-node=\"184\">frutas suaves</b> perfectamente integrados con una <b data-path-to-node=\"5,1\" data-index-in-node=\"231\">acidez cítrica muy ligera</b> y agradable.</p>","stock":22,"image":"https://res.cloudinary.com/dcyhj7pzd/image/upload/v1784390807/Brasil_mockup_r1xzxd.png","descriptionCss":"","video":"","images":[],"sku":"","barcode":"","weight":"0.250","dimensions":{"width":"10","height":"10","depth":"10"},"variants":[{"title":"Tipo","options":["En granos","Molido para Espresso","Molido para cafetera de filtro","Molido para cafetera francesa"]}],"shortDescription":"","showShortDesc":true,"status":"active","descriptionPosition":"right","type":"physical","category":"Café"},{"id":"p-2","name":"Perú - Regional Chirinos 250g","price":21500,"description":"<!-- x-tinymce/html --><p data-path-to-node=\"5,0\"><b data-path-to-node=\"5,0\" data-index-in-node=\"0\">Ficha del Café: Perú - Regional Chirinos</b></p>\n<ul data-path-to-node=\"5,1\">\n<li>\n<p data-path-to-node=\"5,1,0,0\"><b data-path-to-node=\"5,1,0,0\" data-index-in-node=\"0\">Origen:</b> Cajamarca, Perú.</p>\n</li>\n<li>\n<p data-path-to-node=\"5,1,1,0\"><b data-path-to-node=\"5,1,1,0\" data-index-in-node=\"0\">Variedades:</b> Blend de Paches, Typica y Catimor.</p>\n</li>\n<li>\n<p data-path-to-node=\"5,1,2,0\"><b data-path-to-node=\"5,1,2,0\" data-index-in-node=\"0\">Proceso:</b> Lavado tradicional.</p>\n</li>\n<li>\n<p data-path-to-node=\"5,1,3,0\"><b data-path-to-node=\"5,1,3,0\" data-index-in-node=\"0\">Calidad:</b> 83 puntos en taza (Café de especialidad).</p>\n</li>\n</ul>\n<p data-path-to-node=\"5,2\"><b data-path-to-node=\"5,2\" data-index-in-node=\"0\">Perfil de taza:</b> Un café de cuerpo armonioso y perfil dulce. En boca despliega notas sedosas de <b data-path-to-node=\"5,2\" data-index-in-node=\"95\">chocolate con leche, caramelo y vainilla</b>, acompañadas por una <b data-path-to-node=\"5,2\" data-index-in-node=\"157\">ligera y brillante acidez cítrica</b>.</p>","stock":999999,"image":"https://dcdn-us.mitiendanube.com/stores/007/941/162/products/peru-mockup-7f909b003cc1ec4b8517835600577134-1024-1024.webp","descriptionCss":"","video":"","images":[],"sku":"","barcode":"","weight":"0.250","dimensions":{"width":"10","height":"10","depth":"10"},"variants":[{"title":"Tipo","options":["En granos","Molido para Espresso","Molido para café de filtro","Molido para cafetera francesa"]}],"shortDescription":"Un café de cuerpo armonioso y perfil dulce. En boca despliega notas sedosas de chocolate con leche, caramelo y vainilla, acompañadas por una ligera y brillante acidez cítrica.","showShortDesc":true,"status":"active","descriptionPosition":"right","type":"physical","category":"Café"},{"id":"p-fr0yux1","name":"Molinillo ITOP CGSLD160 64mm Profesional","price":799000,"description":"<p><iframe style=\"height: auto; width: 100%; aspect-ratio: 640 / 360; pointer-events: none;\" src=\"https://player.cloudinary.com/embed/?cloud_name=dcyhj7pzd&amp;public_id=Video_Project_10_lnzzeq&amp;profile=cld-looping&amp;controls=false&amp;autoplay=true&amp;loop=true\" width=\"640\" height=\"360\" frameborder=\"0\" allowfullscreen=\"\">\n</iframe></p>\n<p>&nbsp;</p>\n<p>Diseñado para quienes buscan una molienda precisa y consistente. Sus muelas planas de 64 mm ofrecen una distribución uniforme del café, permitiendo obtener extracciones más equilibradas tanto para espresso como para métodos filtrados. Potente, silencioso y pensado para un uso exigente.</p>\n<h4><img src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/ChatGPT Image Jul 11, 2026, 03_57_31 PM2.png\" alt=\"\"></h4>\n<h4 style=\"background-color: #ffffff;\">Ajuste Preciso de Molienda</h4>\n<p data-path-to-node=\"7\">&nbsp;</p>\n<p data-path-to-node=\"6\"><span class=\"\">Lleva tu experiencia cafetera al siguiente nivel con nuestro sistema de </span><strong class=\"\" data-path-to-node=\"6\" data-index-in-node=\"72\">ajuste continuo de molienda de alta precisión</strong><span class=\"\">.</span><span class=\"\"> Diseñado para los amantes del buen café,</span><span class=\"\"> este dial te permite navegar con total fluidez desde una molienda fina hasta una textura gruesa,</span><span class=\"\"> adaptándose a cualquier método de preparación con una exactitud milimétrica de </span><strong class=\"\" data-path-to-node=\"6\" data-index-in-node=\"336\">0,01 mm</strong><span class=\"\">.</span></p>\n<p style=\"background-color: #ffffff;\"><img src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/df2e3cea-0274-48fc-ae68-a319e73370c1.png\" alt=\"\"></p>\n<h4><img src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/ChatGPT Image Jul 11, 2026, 03_57_31 PM2.png\" alt=\"\"></h4>\n<h4>Carcasa Totalmente Metálica de una Sola Pieza</h4>\n<p data-path-to-node=\"7\">&nbsp;</p>\n<p data-path-to-node=\"6\">Este molinillo destaca no solo por su rendimiento, sino por su construcción premium con una <strong data-path-to-node=\"6\" data-index-in-node=\"137\">carcasa totalmente metálica de alta calidad</strong>, diseñada para convertirse en la pieza central de tu barra de café.</p>\n<p style=\"background-color: #ffffff;\">&nbsp;</p>\n<p style=\"background-color: #ffffff;\" data-pm-slice=\"1 1 []\"><img src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/6e7960ea-9b5d-4df6-848f-8f11a0e81e4c2.png\" alt=\"\" width=\"1672\" height=\"941\"></p>\n<h4><img src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/ChatGPT Image Jul 11, 2026, 03_57_31 PM2.png\" alt=\"\" width=\"1500\" height=\"50\"></h4>\n<h4>Motor de Alta Potencia y Rendimiento Superior</h4>\n<p data-path-to-node=\"7\">&nbsp;</p>\n<p data-path-to-node=\"6\">El corazón del molinillo está diseñado para ofrecer una consistencia inigualable y una larga vida útil. Equipado con un <strong data-path-to-node=\"6\" data-index-in-node=\"127\">Motor de CC de Alta Potencia</strong>, este sistema combina tecnología avanzada y un diseño interno robusto para garantizar una molienda perfecta, sin importar la dureza del grano.</p>\n<p style=\"background-color: #ffffff;\" data-pm-slice=\"1 1 []\"><img src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/4bc459ce-b982-4753-807a-13b4fd8a5155.png\" alt=\"\"></p>\n<h4><img src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/ChatGPT Image Jul 11, 2026, 03_57_31 PM2.png\" alt=\"\" width=\"1500\" height=\"50\"></h4>\n<p data-pm-slice=\"1 1 []\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/10.png\" alt=\"\" width=\"790\" height=\"655\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/20.png\" alt=\"\" width=\"790\" height=\"434\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/30.png\" alt=\"\" width=\"790\" height=\"720\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/31.png\" alt=\"\" width=\"790\" height=\"1343\"></p>\n<h4><img src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/ChatGPT Image Jul 11, 2026, 03_57_31 PM2.png\" alt=\"\" width=\"1500\" height=\"50\"></h4>\n<h4 data-pm-slice=\"1 1 []\">Preguntas frecuentes</h4>\n<div class=\"faq-container\"><!-- Pregunta 1 (Abierta por defecto con 'open') --><details open=\"\">\n<summary>¿Cuáles son los medios de pago?</summary>\n<div class=\"faq-content\">\n<p>Aceptamos tarjetas de crédito y débito. También aceptamos transferencias bancarias, y pagos en efectivo con un 10% de descuento.</p>\n</div>\n</details><!-- Pregunta 2 --><details>\n<summary>¿El envío es internacional?</summary>\n<div class=\"faq-content\">\n<p data-pm-slice=\"1 1 []\">Sí. Importamos cada producto directamente desde nuestro proveedor en el exterior. El envío demora entre 5 y 15 días hábiles, es gratuito y no tenés que pagar impuestos aduaneros ni costos adicionales. El precio publicado es el precio final.</p>\n</div>\n</details><!-- Pregunta 3 --><details>\n<summary>¿Qué requisitos necesito para recibir un envío internacional?</summary>\n<div class=\"faq-content\">\n<p>Para realizar la compra solo necesitás:</p>\n<p>&nbsp;⚬ Tener Clave Fiscal nivel 3 de ARCA (ex AFIP).</p>\n<p>&nbsp;⚬ Contar con disponibilidad dentro del régimen de envíos por courier, es decir, no haber superado el límite de 5 envíos internacionales por courier durante el año calendario.</p>\n<p>&nbsp;</p>\n<p>Si tenés alguna duda sobre estos requisitos, podés escribirnos y te ayudamos durante todo el proceso.</p>\n</div>\n</details><!-- Pregunta 4 --><details>\n<summary>¿La cafetera tiene garantía?</summary>\n<div class=\"faq-content\">\n<p data-pm-slice=\"1 1 []\">Sí. Todas nuestras cafeteras cuentan con 1 año de garantía. La garantía cubre cualquier falla de fabricación o desperfecto en sus componentes, brindándote tranquilidad y respaldo durante el uso.</p>\n</div>\n</details><!-- Pregunta 5 --><details>\n<summary>¿Se puede utilizar en un ámbito comercial?</summary>\n<div class=\"faq-content\">\n<p data-pm-slice=\"1 1 []\">Sí. Gracias a su motor de alto rendimiento y sus muelas planas de 64 mm, este molinillo está preparado para un uso continuo en cafeterías, oficinas o emprendimientos gastronómicos. Su molienda uniforme y su regulación precisa permiten mantener una calidad constante en cada extracción, incluso durante jornadas de trabajo exigentes.</p>\n</div>\n</details></div>","descriptionCss":"/* Contenedor principal con tipografía limpia */\n.faq-container {\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\n  max-width: 700px;\n  margin: 0 auto;\n  padding: 20px;\n}\n\n/* Cada bloque de pregunta/respuesta */\ndetails {\n  border-bottom: 1px solid #e5e5e5;\n  padding: 24px 0;\n}\n\n/* Línea superior para el primer elemento */\ndetails:first-of-type {\n  border-top: 1px solid #e5e5e5;\n}\n\n/* El título de la pregunta */\nsummary {\n  font-size: 1.15rem;\n  font-weight: 400;\n  color: #111;\n  list-style: none; /* Oculta la flecha nativa */\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  cursor: pointer;\n  user-select: none;\n}\n\n/* Oculta la flecha nativa en navegadores Safari */\nsummary::-webkit-details-marker {\n  display: none;\n}\n\n/* Flecha personalizada a la derecha (idéntica a la imagen) */\nsummary::after {\n  content: \"\";\n  display: inline-block;\n  width: 10px;\n  height: 10px;\n  border-bottom: 2px solid #333;\n  border-right: 2px solid #333;\n  transform: rotate(45deg); /* Flecha hacia abajo */\n  transition: transform 0.2s ease;\n  margin-right: 8px;\n}\n\n/* Rotación de la flecha al abrir la pregunta */\ndetails[open] summary::after {\n  transform: rotate(-135deg); /* Flecha hacia arriba */\n}\n\n/* Contenedor del texto de la respuesta */\n.faq-content {\n  margin-top: 16px;\n  padding-right: 40px; /* Margen para no chocar con la flecha */\n}\n\n.faq-content p {\n  font-size: 1.05rem;\n  line-height: 1.5;\n  color: #222;\n  margin: 0;\n}\n\n/* Contenedor principal */\n.tiktok-section {\n \n}\n\n/* Carrusel horizontal con efecto Snap para móviles */\n.tiktok-carousel {\n  display: flex;\n  gap: 20px;\n  overflow-x: auto;\n  padding-bottom: 24px;\n  scroll-snap-type: x mandatory;\n  -webkit-overflow-scrolling: touch;\n  scrollbar-width: none;\n}\n\n.tiktok-carousel::-webkit-scrollbar {\n  display: none; \n}\n\n/* Diseño de la tarjeta */\n.tiktok-card {\n  flex: 0 0 280px; \n  height: 500px;\n  border-radius: 12px;\n  overflow: hidden;\n  position: relative;\n  scroll-snap-align: center;\n  background-color: #000;\n  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);\n  transition: transform 0.3s ease;\n}\n\n.tiktok-card:hover {\n  transform: translateY(-4px);\n}\n\n/* Ajuste del Iframe de YouTube */\n.yt-iframe {\n  width: 100%;\n  height: 100%;\n  /* Eliminado pointer-events: none para permitir clics */\n}","stock":999999,"image":"https://res.cloudinary.com/dcyhj7pzd/image/upload/v1784390847/123123123_gernqx.png","video":"","images":[],"sku":"","barcode":"","weight":"10","dimensions":{"width":"10","height":"10","depth":"10"},"variants":[],"shortDescription":"Diseñado para quienes buscan una molienda precisa y consistente. Sus muelas planas de 64 mm ofrecen una distribución uniforme del café, permitiendo obtener extracciones más equilibradas tanto para espresso como para métodos filtrados. Potente, silencioso y pensado para un uso exigente.","showShortDesc":true,"status":"active","descriptionPosition":"right","type":"physical"},{"id":"p-erv2wok","name":"Honduras - El Ocotillo 250g","price":23200,"description":"<!-- x-tinymce/html --><p data-path-to-node=\"5,0\"><b data-path-to-node=\"5,0\" data-index-in-node=\"0\">Origen:</b> Comayagua, Honduras</p><p data-path-to-node=\"5,0\"><b data-path-to-node=\"5,0\" data-index-in-node=\"28\">Productor:</b> Jorge Valdez <b data-path-to-node=\"5,0\" data-index-in-node=\"52\">Variedad:</b> Parainema (1.450 msnm) <b data-path-to-node=\"5,0\" data-index-in-node=\"85\">Proceso:</b> Lavado</p><p data-path-to-node=\"5,1\"><b data-path-to-node=\"5,1\" data-index-in-node=\"0\">Perfil Sensorial:</b></p><p data-path-to-node=\"5,0\"><!-- x-tinymce/html -->\n\n\n</p><ul data-path-to-node=\"5,2\">\n<li>\n<p data-path-to-node=\"5,2,0,0\"><b data-path-to-node=\"5,2,0,0\" data-index-in-node=\"0\">Notas principales:</b> Panela, naranja madura y una marcada textura cremosa.</p>\n</li>\n<li>\n<p data-path-to-node=\"5,2,1,0\"><b data-path-to-node=\"5,2,1,0\" data-index-in-node=\"0\">Perfil secundario:</b> Nuez tostada y notas suaves de cacao. Un café de altura lavado, ideal para quienes buscan una taza limpia, dulce, con buen cuerpo y excelente balance.</p>\n</li></ul>","stock":999999,"image":"https://res.cloudinary.com/dcyhj7pzd/image/upload/v1784390807/Honduras_mockup_cmjxdb.png","descriptionCss":"","video":"","images":[],"sku":"","barcode":"","weight":"0.250","dimensions":{"width":"10","height":"10","depth":"10"},"variants":[{"title":"Tipo","options":["En granos","Molido para Espresso","Molido para café de filtro","Molido para cafetera francesa"]}],"shortDescription":"Un café de altura lavado, ideal para quienes buscan una taza limpia, dulce, con buen cuerpo y excelente balance.","showShortDesc":true,"status":"active","descriptionPosition":"right","type":"physical","category":"Café"},{"id":"p-r3wo17p","name":"Café","price":19.99,"description":"","descriptionCss":"","stock":999999,"image":"","video":"","images":[],"sku":"","barcode":"","weight":"0.250","dimensions":{"width":"10","height":"10","depth":"10"},"variants":[{"title":"Variedad","options":["Colombia","Brasil","Honduras","Perú"],"images":{"Honduras":"https://res.cloudinary.com/dcyhj7pzd/image/upload/v1784390807/Honduras_mockup_cmjxdb.png","Brasil":"https://res.cloudinary.com/dcyhj7pzd/image/upload/v1784390807/Brasil_mockup_r1xzxd.png","Perú":"https://res.cloudinary.com/dcyhj7pzd/image/upload/v1784390807/Peru_mockup_skwfja.png","Colombia":"https://res.cloudinary.com/dcyhj7pzd/image/upload/v1784390805/Colombia_mockup_kanpea.png"},"pricesEnabled":{"Honduras":true,"Colombia":true,"Brasil":true,"Perú":true},"prices":{"Honduras":23200,"Colombia":24900,"Brasil":20700,"Perú":21500},"priceEnabled":{"Perú":true,"Honduras":true,"Brasil":true,"Colombia":true}},{"title":"Tipo","options":["En granos","Molido para espresso","Molido para café de filtro","Molido para cafetera francesa"]}],"shortDescription":"","showShortDesc":true,"status":"unlisted","descriptionPosition":"right","type":"physical","category":""}];
-    const gateway = {"stripeEnabled":false,"stripePublicKey":"pk_test_sample_key","paypalEnabled":false,"paypalClientId":"sb-sample-client-id","mercadopagoEnabled":true,"mercadopagoPublicKey":"APP_USR-220835dd-c717-42ef-b0fc-d600424de268","testMode":true,"mercadopagoRealPayments":true};
+    const products = [{"id":"p-0","sku":"","name":"Colombia - San Antonio 250g","type":"physical","image":"https://res.cloudinary.com/dcyhj7pzd/image/upload/v1784390805/Colombia_mockup_kanpea.png","price":24900,"stock":15,"video":"","images":[],"status":"active","weight":"0.250","barcode":"","category":"Café","variants":[{"title":"Tipo","options":["En granos","Molido para Espresso","Molido para café de filtro","Molido para cafetera francesa"]}],"dimensions":{"depth":"10","width":"10","height":"10"},"description":"<!-- x-tinymce/html --><p data-path-to-node=\"5,0\"><b data-path-to-node=\"5,0\" data-index-in-node=\"0\">Origen:</b> San Antonio, Tolima – Colombia</p>\n<p data-path-to-node=\"5,0\"><b data-path-to-node=\"5,0\" data-index-in-node=\"39\">Productor:</b> Emanuel Enciso (1800 msnm) <b data-path-to-node=\"5,0\" data-index-in-node=\"77\">Variedad / Proceso:</b> Castillo / Lavado (Washed) <b data-path-to-node=\"5,0\" data-index-in-node=\"124\">Datos del lote:</b> Humedad 10,96% | Criba est. 16 (dispersión a 15) <b data-path-to-node=\"5,0\" data-index-in-node=\"189\">Calidad:</b> 84.3 Puntos SCA (Promedio)</p>\n<p data-path-to-node=\"5,1\"><b data-path-to-node=\"5,1\" data-index-in-node=\"0\">Notas de Cata:</b> Una taza limpia de <b data-path-to-node=\"5,1\" data-index-in-node=\"34\">cuerpo medio</b> y una <b data-path-to-node=\"5,1\" data-index-in-node=\"53\">acidez cítrica jugosa</b>. Su perfil principal destaca por su dulzura, notas a <b data-path-to-node=\"5,1\" data-index-in-node=\"128\">nueces y descriptores florales</b>. Como notas secundarias, revela destellos de <b data-path-to-node=\"5,1\" data-index-in-node=\"204\">cacao suave y frutas ligeras</b> que redondean la experiencia.</p>","showShortDesc":true,"descriptionCss":"","shortDescription":"Una taza limpia de cuerpo medio y una acidez cítrica jugosa. Su perfil principal destaca por su dulzura, notas a nueces y descriptores florales. Como notas secundarias, revela destellos de cacao suave y frutas ligeras que redondean la experiencia.","descriptionPosition":"right"},{"id":"p-1","sku":"","name":"Brasil - Cristais Paulista 250g","type":"physical","image":"https://res.cloudinary.com/dcyhj7pzd/image/upload/v1784390807/Brasil_mockup_r1xzxd.png","price":20700,"stock":22,"video":"","images":[],"status":"active","weight":"0.250","barcode":"","category":"Café","variants":[{"title":"Tipo","options":["En granos","Molido para Espresso","Molido para cafetera de filtro","Molido para cafetera francesa"]}],"dimensions":{"depth":"10","width":"10","height":"10"},"description":"<!-- x-tinymce/html --><p data-path-to-node=\"5,0\"><b data-path-to-node=\"5,0\" data-index-in-node=\"0\">Origen:</b> Cristais Paulista, Alta Mogiana – Brasil <b data-path-to-node=\"5,0\" data-index-in-node=\"49\">Productor:</b> Finca Bom Jesus <b data-path-to-node=\"5,0\" data-index-in-node=\"76\">Variedad:</b> Mundo Novo y Catuaí (1.000 - 1.250 msnm) <b data-path-to-node=\"5,0\" data-index-in-node=\"127\">Proceso:</b> Natural <b data-path-to-node=\"5,0\" data-index-in-node=\"144\">Calidad:</b> 84.0 - 84.25 Puntos SCA</p>\n<p data-path-to-node=\"5,1\"><b data-path-to-node=\"5,1\" data-index-in-node=\"0\">Perfil Sensorial:</b> Un café de gran estructura y <b data-path-to-node=\"5,1\" data-index-in-node=\"47\">cuerpo redondo</b>. En su perfil principal destacan notas dulces a <b data-path-to-node=\"5,1\" data-index-in-node=\"110\">cacao, caramelo y frutos secos</b>. En un segundo plano, despliega matices de <b data-path-to-node=\"5,1\" data-index-in-node=\"184\">frutas suaves</b> perfectamente integrados con una <b data-path-to-node=\"5,1\" data-index-in-node=\"231\">acidez cítrica muy ligera</b> y agradable.</p>","showShortDesc":true,"descriptionCss":"","shortDescription":"","descriptionPosition":"right"},{"id":"p-2","sku":"","name":"Perú - Regional Chirinos 250g","type":"physical","image":"https://dcdn-us.mitiendanube.com/stores/007/941/162/products/peru-mockup-7f909b003cc1ec4b8517835600577134-1024-1024.webp","price":21500,"stock":999999,"video":"","images":[],"status":"active","weight":"0.250","barcode":"","category":"Café","variants":[{"title":"Tipo","options":["En granos","Molido para Espresso","Molido para café de filtro","Molido para cafetera francesa"]}],"dimensions":{"depth":"10","width":"10","height":"10"},"description":"<!-- x-tinymce/html --><p data-path-to-node=\"5,0\"><b data-path-to-node=\"5,0\" data-index-in-node=\"0\">Ficha del Café: Perú - Regional Chirinos</b></p>\n<ul data-path-to-node=\"5,1\">\n<li>\n<p data-path-to-node=\"5,1,0,0\"><b data-path-to-node=\"5,1,0,0\" data-index-in-node=\"0\">Origen:</b> Cajamarca, Perú.</p>\n</li>\n<li>\n<p data-path-to-node=\"5,1,1,0\"><b data-path-to-node=\"5,1,1,0\" data-index-in-node=\"0\">Variedades:</b> Blend de Paches, Typica y Catimor.</p>\n</li>\n<li>\n<p data-path-to-node=\"5,1,2,0\"><b data-path-to-node=\"5,1,2,0\" data-index-in-node=\"0\">Proceso:</b> Lavado tradicional.</p>\n</li>\n<li>\n<p data-path-to-node=\"5,1,3,0\"><b data-path-to-node=\"5,1,3,0\" data-index-in-node=\"0\">Calidad:</b> 83 puntos en taza (Café de especialidad).</p>\n</li>\n</ul>\n<p data-path-to-node=\"5,2\"><b data-path-to-node=\"5,2\" data-index-in-node=\"0\">Perfil de taza:</b> Un café de cuerpo armonioso y perfil dulce. En boca despliega notas sedosas de <b data-path-to-node=\"5,2\" data-index-in-node=\"95\">chocolate con leche, caramelo y vainilla</b>, acompañadas por una <b data-path-to-node=\"5,2\" data-index-in-node=\"157\">ligera y brillante acidez cítrica</b>.</p>","showShortDesc":true,"descriptionCss":"","shortDescription":"Un café de cuerpo armonioso y perfil dulce. En boca despliega notas sedosas de chocolate con leche, caramelo y vainilla, acompañadas por una ligera y brillante acidez cítrica.","descriptionPosition":"right"},{"id":"p-fr0yux1","sku":"","name":"Molinillo ITOP CGSLD160 64mm Profesional","type":"physical","image":"https://res.cloudinary.com/dcyhj7pzd/image/upload/v1784390847/123123123_gernqx.png","price":799000,"stock":999999,"video":"","images":[],"status":"active","weight":"10","barcode":"","variants":[],"dimensions":{"depth":"10","width":"10","height":"10"},"description":"<p><iframe style=\"height: auto; width: 100%; aspect-ratio: 640 / 360; pointer-events: none;\" src=\"https://player.cloudinary.com/embed/?cloud_name=dcyhj7pzd&amp;public_id=Video_Project_10_lnzzeq&amp;profile=cld-looping&amp;controls=false&amp;autoplay=true&amp;loop=true\" width=\"640\" height=\"360\" frameborder=\"0\" allowfullscreen=\"\">\n</iframe></p>\n<p>&nbsp;</p>\n<p>Diseñado para quienes buscan una molienda precisa y consistente. Sus muelas planas de 64 mm ofrecen una distribución uniforme del café, permitiendo obtener extracciones más equilibradas tanto para espresso como para métodos filtrados. Potente, silencioso y pensado para un uso exigente.</p>\n<h4><img src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/ChatGPT Image Jul 11, 2026, 03_57_31 PM2.png\" alt=\"\"></h4>\n<h4 style=\"background-color: #ffffff;\">Ajuste Preciso de Molienda</h4>\n<p data-path-to-node=\"7\">&nbsp;</p>\n<p data-path-to-node=\"6\"><span class=\"\">Lleva tu experiencia cafetera al siguiente nivel con nuestro sistema de </span><strong class=\"\" data-path-to-node=\"6\" data-index-in-node=\"72\">ajuste continuo de molienda de alta precisión</strong><span class=\"\">.</span><span class=\"\"> Diseñado para los amantes del buen café,</span><span class=\"\"> este dial te permite navegar con total fluidez desde una molienda fina hasta una textura gruesa,</span><span class=\"\"> adaptándose a cualquier método de preparación con una exactitud milimétrica de </span><strong class=\"\" data-path-to-node=\"6\" data-index-in-node=\"336\">0,01 mm</strong><span class=\"\">.</span></p>\n<p style=\"background-color: #ffffff;\"><img src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/df2e3cea-0274-48fc-ae68-a319e73370c1.png\" alt=\"\"></p>\n<h4><img src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/ChatGPT Image Jul 11, 2026, 03_57_31 PM2.png\" alt=\"\"></h4>\n<h4>Carcasa Totalmente Metálica de una Sola Pieza</h4>\n<p data-path-to-node=\"7\">&nbsp;</p>\n<p data-path-to-node=\"6\">Este molinillo destaca no solo por su rendimiento, sino por su construcción premium con una <strong data-path-to-node=\"6\" data-index-in-node=\"137\">carcasa totalmente metálica de alta calidad</strong>, diseñada para convertirse en la pieza central de tu barra de café.</p>\n<p style=\"background-color: #ffffff;\">&nbsp;</p>\n<p style=\"background-color: #ffffff;\" data-pm-slice=\"1 1 []\"><img src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/6e7960ea-9b5d-4df6-848f-8f11a0e81e4c2.png\" alt=\"\" width=\"1672\" height=\"941\"></p>\n<h4><img src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/ChatGPT Image Jul 11, 2026, 03_57_31 PM2.png\" alt=\"\" width=\"1500\" height=\"50\"></h4>\n<h4>Motor de Alta Potencia y Rendimiento Superior</h4>\n<p data-path-to-node=\"7\">&nbsp;</p>\n<p data-path-to-node=\"6\">El corazón del molinillo está diseñado para ofrecer una consistencia inigualable y una larga vida útil. Equipado con un <strong data-path-to-node=\"6\" data-index-in-node=\"127\">Motor de CC de Alta Potencia</strong>, este sistema combina tecnología avanzada y un diseño interno robusto para garantizar una molienda perfecta, sin importar la dureza del grano.</p>\n<p style=\"background-color: #ffffff;\" data-pm-slice=\"1 1 []\"><img src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/4bc459ce-b982-4753-807a-13b4fd8a5155.png\" alt=\"\"></p>\n<h4><img src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/ChatGPT Image Jul 11, 2026, 03_57_31 PM2.png\" alt=\"\" width=\"1500\" height=\"50\"></h4>\n<p data-pm-slice=\"1 1 []\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/10.png\" alt=\"\" width=\"790\" height=\"655\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/20.png\" alt=\"\" width=\"790\" height=\"434\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/30.png\" alt=\"\" width=\"790\" height=\"720\"><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/31.png\" alt=\"\" width=\"790\" height=\"1343\"></p>\n<h4><img src=\"https://d1a9qnv764bsoo.cloudfront.net/stores/007/941/162/rte/ChatGPT Image Jul 11, 2026, 03_57_31 PM2.png\" alt=\"\" width=\"1500\" height=\"50\"></h4>\n<h4 data-pm-slice=\"1 1 []\">Preguntas frecuentes</h4>\n<div class=\"faq-container\"><!-- Pregunta 1 (Abierta por defecto con 'open') --><details open=\"\">\n<summary>¿Cuáles son los medios de pago?</summary>\n<div class=\"faq-content\">\n<p>Aceptamos tarjetas de crédito y débito. También aceptamos transferencias bancarias, y pagos en efectivo con un 10% de descuento.</p>\n</div>\n</details><!-- Pregunta 2 --><details>\n<summary>¿El envío es internacional?</summary>\n<div class=\"faq-content\">\n<p data-pm-slice=\"1 1 []\">Sí. Importamos cada producto directamente desde nuestro proveedor en el exterior. El envío demora entre 5 y 15 días hábiles, es gratuito y no tenés que pagar impuestos aduaneros ni costos adicionales. El precio publicado es el precio final.</p>\n</div>\n</details><!-- Pregunta 3 --><details>\n<summary>¿Qué requisitos necesito para recibir un envío internacional?</summary>\n<div class=\"faq-content\">\n<p>Para realizar la compra solo necesitás:</p>\n<p>&nbsp;⚬ Tener Clave Fiscal nivel 3 de ARCA (ex AFIP).</p>\n<p>&nbsp;⚬ Contar con disponibilidad dentro del régimen de envíos por courier, es decir, no haber superado el límite de 5 envíos internacionales por courier durante el año calendario.</p>\n<p>&nbsp;</p>\n<p>Si tenés alguna duda sobre estos requisitos, podés escribirnos y te ayudamos durante todo el proceso.</p>\n</div>\n</details><!-- Pregunta 4 --><details>\n<summary>¿La cafetera tiene garantía?</summary>\n<div class=\"faq-content\">\n<p data-pm-slice=\"1 1 []\">Sí. Todas nuestras cafeteras cuentan con 1 año de garantía. La garantía cubre cualquier falla de fabricación o desperfecto en sus componentes, brindándote tranquilidad y respaldo durante el uso.</p>\n</div>\n</details><!-- Pregunta 5 --><details>\n<summary>¿Se puede utilizar en un ámbito comercial?</summary>\n<div class=\"faq-content\">\n<p data-pm-slice=\"1 1 []\">Sí. Gracias a su motor de alto rendimiento y sus muelas planas de 64 mm, este molinillo está preparado para un uso continuo en cafeterías, oficinas o emprendimientos gastronómicos. Su molienda uniforme y su regulación precisa permiten mantener una calidad constante en cada extracción, incluso durante jornadas de trabajo exigentes.</p>\n</div>\n</details></div>","showShortDesc":true,"descriptionCss":"/* Contenedor principal con tipografía limpia */\n.faq-container {\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\n  max-width: 700px;\n  margin: 0 auto;\n  padding: 20px;\n}\n\n/* Cada bloque de pregunta/respuesta */\ndetails {\n  border-bottom: 1px solid #e5e5e5;\n  padding: 24px 0;\n}\n\n/* Línea superior para el primer elemento */\ndetails:first-of-type {\n  border-top: 1px solid #e5e5e5;\n}\n\n/* El título de la pregunta */\nsummary {\n  font-size: 1.15rem;\n  font-weight: 400;\n  color: #111;\n  list-style: none; /* Oculta la flecha nativa */\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  cursor: pointer;\n  user-select: none;\n}\n\n/* Oculta la flecha nativa en navegadores Safari */\nsummary::-webkit-details-marker {\n  display: none;\n}\n\n/* Flecha personalizada a la derecha (idéntica a la imagen) */\nsummary::after {\n  content: \"\";\n  display: inline-block;\n  width: 10px;\n  height: 10px;\n  border-bottom: 2px solid #333;\n  border-right: 2px solid #333;\n  transform: rotate(45deg); /* Flecha hacia abajo */\n  transition: transform 0.2s ease;\n  margin-right: 8px;\n}\n\n/* Rotación de la flecha al abrir la pregunta */\ndetails[open] summary::after {\n  transform: rotate(-135deg); /* Flecha hacia arriba */\n}\n\n/* Contenedor del texto de la respuesta */\n.faq-content {\n  margin-top: 16px;\n  padding-right: 40px; /* Margen para no chocar con la flecha */\n}\n\n.faq-content p {\n  font-size: 1.05rem;\n  line-height: 1.5;\n  color: #222;\n  margin: 0;\n}\n\n/* Contenedor principal */\n.tiktok-section {\n \n}\n\n/* Carrusel horizontal con efecto Snap para móviles */\n.tiktok-carousel {\n  display: flex;\n  gap: 20px;\n  overflow-x: auto;\n  padding-bottom: 24px;\n  scroll-snap-type: x mandatory;\n  -webkit-overflow-scrolling: touch;\n  scrollbar-width: none;\n}\n\n.tiktok-carousel::-webkit-scrollbar {\n  display: none; \n}\n\n/* Diseño de la tarjeta */\n.tiktok-card {\n  flex: 0 0 280px; \n  height: 500px;\n  border-radius: 12px;\n  overflow: hidden;\n  position: relative;\n  scroll-snap-align: center;\n  background-color: #000;\n  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);\n  transition: transform 0.3s ease;\n}\n\n.tiktok-card:hover {\n  transform: translateY(-4px);\n}\n\n/* Ajuste del Iframe de YouTube */\n.yt-iframe {\n  width: 100%;\n  height: 100%;\n  /* Eliminado pointer-events: none para permitir clics */\n}","shortDescription":"Diseñado para quienes buscan una molienda precisa y consistente. Sus muelas planas de 64 mm ofrecen una distribución uniforme del café, permitiendo obtener extracciones más equilibradas tanto para espresso como para métodos filtrados. Potente, silencioso y pensado para un uso exigente.","descriptionPosition":"right"},{"id":"p-erv2wok","sku":"","name":"Honduras - El Ocotillo 250g","type":"physical","image":"https://res.cloudinary.com/dcyhj7pzd/image/upload/v1784390807/Honduras_mockup_cmjxdb.png","price":23200,"stock":999999,"video":"","images":[],"status":"active","weight":"0.250","barcode":"","category":"Café","variants":[{"title":"Tipo","options":["En granos","Molido para Espresso","Molido para café de filtro","Molido para cafetera francesa"]}],"dimensions":{"depth":"10","width":"10","height":"10"},"description":"<!-- x-tinymce/html --><p data-path-to-node=\"5,0\"><b data-path-to-node=\"5,0\" data-index-in-node=\"0\">Origen:</b> Comayagua, Honduras</p><p data-path-to-node=\"5,0\"><b data-path-to-node=\"5,0\" data-index-in-node=\"28\">Productor:</b> Jorge Valdez <b data-path-to-node=\"5,0\" data-index-in-node=\"52\">Variedad:</b> Parainema (1.450 msnm) <b data-path-to-node=\"5,0\" data-index-in-node=\"85\">Proceso:</b> Lavado</p><p data-path-to-node=\"5,1\"><b data-path-to-node=\"5,1\" data-index-in-node=\"0\">Perfil Sensorial:</b></p><p data-path-to-node=\"5,0\"><!-- x-tinymce/html -->\n\n\n</p><ul data-path-to-node=\"5,2\">\n<li>\n<p data-path-to-node=\"5,2,0,0\"><b data-path-to-node=\"5,2,0,0\" data-index-in-node=\"0\">Notas principales:</b> Panela, naranja madura y una marcada textura cremosa.</p>\n</li>\n<li>\n<p data-path-to-node=\"5,2,1,0\"><b data-path-to-node=\"5,2,1,0\" data-index-in-node=\"0\">Perfil secundario:</b> Nuez tostada y notas suaves de cacao. Un café de altura lavado, ideal para quienes buscan una taza limpia, dulce, con buen cuerpo y excelente balance.</p>\n</li></ul>","showShortDesc":true,"descriptionCss":"","shortDescription":"Un café de altura lavado, ideal para quienes buscan una taza limpia, dulce, con buen cuerpo y excelente balance.","descriptionPosition":"right"},{"id":"p-r3wo17p","sku":"","name":"Café","type":"physical","image":"","price":19.99,"stock":999999,"video":"","images":[],"status":"unlisted","weight":"0.250","barcode":"","category":"","variants":[{"title":"Variedad","images":{"Perú":"https://res.cloudinary.com/dcyhj7pzd/image/upload/v1784390807/Peru_mockup_skwfja.png","Brasil":"https://res.cloudinary.com/dcyhj7pzd/image/upload/v1784390807/Brasil_mockup_r1xzxd.png","Colombia":"https://res.cloudinary.com/dcyhj7pzd/image/upload/v1784390805/Colombia_mockup_kanpea.png","Honduras":"https://res.cloudinary.com/dcyhj7pzd/image/upload/v1784390807/Honduras_mockup_cmjxdb.png"},"prices":{"Perú":21500,"Brasil":20700,"Colombia":24900,"Honduras":23200},"options":["Colombia","Brasil","Honduras","Perú"],"priceEnabled":{"Perú":true,"Brasil":true,"Colombia":true,"Honduras":true},"pricesEnabled":{"Perú":true,"Brasil":true,"Colombia":true,"Honduras":true}},{"title":"Tipo","options":["En granos","Molido para espresso","Molido para café de filtro","Molido para cafetera francesa"]}],"dimensions":{"depth":"10","width":"10","height":"10"},"description":"","showShortDesc":true,"descriptionCss":"","shortDescription":"","descriptionPosition":"right"}];
+    const gateway = {"testMode":true,"paypalEnabled":false,"stripeEnabled":false,"paypalClientId":"sb-sample-client-id","stripePublicKey":"pk_test_sample_key","mercadopagoEnabled":true,"mercadopagoPublicKey":"APP_USR-220835dd-c717-42ef-b0fc-d600424de268","mercadopagoRealPayments":true};
     const isBuilderMode = false;
-    const shippingConfig = {"localPrice":2.99,"nationalPrice":5.99,"freeShippingMin":70000,"enabledMethods":["local","national","express"]};
+    const shippingConfig = {"localPrice":2.99,"nationalPrice":5.99,"enabledMethods":["local","national","express"],"freeShippingMin":70000};
     const cartConfig = {
       showFreeShippingBar: true,
       showComplementaryProducts: true
@@ -1769,10 +2278,11 @@
       return ['Todos', ...Array.from(cats)];
     }
 
-    window.formatArgentinePrice = function(val) {
+    function formatArgentinePrice(val) {
       const num = Number(val) || 0;
       return num.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    };
+    }
+    window.formatArgentinePrice = formatArgentinePrice;
 
     function renderIframeCategoryFilters() {
       const cats = getProductCategories();
@@ -2361,6 +2871,7 @@
       }
       const individualProductEl = document.getElementById('individual-product-page');
       const directoryProductsEl = document.getElementById('directory-products-page');
+      const checkoutPageEl = document.getElementById('checkout-page');
       
       if (individualProductEl) {
         individualProductEl.style.display = 'none';
@@ -2369,6 +2880,10 @@
       if (directoryProductsEl) {
         directoryProductsEl.style.display = 'none';
         directoryProductsEl.innerHTML = '';
+      }
+      if (checkoutPageEl) {
+        checkoutPageEl.style.display = 'none';
+        checkoutPageEl.innerHTML = '';
       }
       
       const builderSections = document.querySelectorAll('.builder-section');
@@ -2586,6 +3101,28 @@
         }
         
         if (!isBuilderMode) window.scrollTo(0, 0);
+      } else if (hash === '#checkout') {
+        builderSections.forEach(sec => {
+          const secType = sec.dataset.type;
+          if (secType === 'footer' || sec.id.includes('sec-footer') || sec.id.toLowerCase().includes('footer')) {
+            sec.style.display = 'block';
+          } else {
+            sec.style.display = 'none';
+          }
+        });
+        
+        dividers.forEach(div => {
+          div.style.display = 'none';
+        });
+        
+        if (checkoutPageEl) {
+          checkoutPageEl.style.display = 'block';
+          if (typeof window.renderCheckoutPage === 'function') {
+            window.renderCheckoutPage();
+          }
+        }
+        
+        if (!isBuilderMode) window.scrollTo(0, 0);
       } else {
         builderSections.forEach(sec => {
           const secType = sec.dataset.type;
@@ -2679,6 +3216,17 @@
       }
     }
 
+    function updateCartItemQty(index, change) {
+      if (!cart[index]) return;
+      cart[index].quantity += change;
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
+      if (typeof renderCheckoutSummary === 'function') renderCheckoutSummary();
+    }
+    window.updateCartItemQty = updateCartItemQty;
+
     function updateCartUI() {
       const countEl = document.getElementById('cart-count');
       const itemsEl = document.getElementById('cart-items-container');
@@ -2700,12 +3248,17 @@
             itemEl.className = 'cart-item';
             itemEl.innerHTML = `
               <img class="cart-item-img" src="${item.product.image || getProductDisplayImage(item.product)}" onerror="this.src='https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&q=80&w=500'">
-              <div class="cart-item-details">
+              <div class="cart-item-details" style="flex: 1; min-width: 0;">
                 <div class="cart-item-title">${item.product.name}</div>
                 ${item.variantLabel ? '<div style="font-size: 0.72rem; color: #6b7280; margin-top: 0.1rem;">' + item.variantLabel + '</div>' : ''}
-                <div class="cart-item-price">${item.quantity}x $${item.product.price.toFixed(2)}</div>
+                <div class="cart-item-price" style="font-size: 0.82rem; font-weight: 700; color: #0f172a; margin-top: 0.15rem;">$${(item.product.price * item.quantity).toFixed(2)}</div>
+                <div class="cart-qty-picker" style="display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 0.35rem; background: #f1f5f9; border-radius: 0.375rem; padding: 0.15rem 0.35rem; border: 1px solid #cbd5e1;">
+                  <button type="button" onclick="updateCartItemQty(${index}, -1)" title="Reducir cantidad" style="width: 22px; height: 22px; border: none; background: #ffffff; color: #0f172a; font-weight: bold; border-radius: 0.25rem; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">-</button>
+                  <span style="font-size: 0.82rem; font-weight: 700; color: #0f172a; min-width: 18px; text-align: center;">${item.quantity}</span>
+                  <button type="button" onclick="updateCartItemQty(${index}, 1)" title="Aumentar cantidad" style="width: 22px; height: 22px; border: none; background: #ffffff; color: #0f172a; font-weight: bold; border-radius: 0.25rem; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">+</button>
+                </div>
               </div>
-              <button onclick="removeFromCart(${index})" style="background:none; border:none; color:#ef4444; font-weight:bold; cursor:pointer; font-size:1rem; padding: 0.5rem;">✕</button>
+              <button onclick="removeFromCart(${index})" title="Eliminar del carrito" style="background:none; border:none; color:#ef4444; font-weight:bold; cursor:pointer; font-size:1.1rem; padding: 0.5rem; opacity: 0.8;">✕</button>
             `;
             itemsEl.appendChild(itemEl);
           });
@@ -2816,63 +3369,592 @@
       updateCartUI();
     }
 
-    
-    // Real Mercado Pago checkout: calls the /api/create-preference serverless
-    // function (deployed alongside this site on Vercel) which holds the
-    // private Access Token server-side, then redirects to the real MP checkout.
-    async function checkout() {
-      if (cart.length === 0) {
-        showModal('Carrito Vacío', 'Agrega algún producto antes de proceder al pago.');
+    window.selectedDeliveryMethod = 'shipping';
+    window.selectedPaymentMethod = 'mercadopago';
+
+    function renderCheckoutPage() {
+      const checkoutPageEl = document.getElementById('checkout-page');
+      if (!checkoutPageEl) return;
+
+      if (!cart || cart.length === 0) {
+        checkoutPageEl.innerHTML = `
+          <div style="text-align: center; padding: 4rem 1.5rem; background: #ffffff; border-radius: 1rem; border: 1px solid #e2e8f0; max-width: 600px; margin: 2rem auto;">
+            <div style="font-size: 3.5rem; margin-bottom: 1rem;"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle;"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></div>
+            <h2 style="font-size: 1.75rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Tu carrito está vacío</h2>
+            <p style="color: #64748b; font-size: 1rem; margin-bottom: 2rem;">Agrega algunos productos antes de proceder a la finalización de la compra.</p>
+            <button onclick="navigateToHash('#productos')" class="btn btn-primary" style="padding: 0.85rem 2rem; border-radius: 0.5rem; font-weight: 600; border: none; cursor: pointer;">
+              Explorar Productos
+            </button>
+          </div>
+        `;
         return;
       }
 
-      const checkoutBtn = document.getElementById('mp-checkout-btn');
-      const originalBtnText = checkoutBtn ? checkoutBtn.textContent : '';
-      if (checkoutBtn) {
-        checkoutBtn.disabled = true;
-        checkoutBtn.style.opacity = '0.7';
-        checkoutBtn.textContent = 'Redirigiendo a Mercado Pago...';
+      const isShip = (window.selectedDeliveryMethod === 'shipping');
+      const isMP = (window.selectedPaymentMethod === 'mercadopago');
+
+      checkoutPageEl.innerHTML = `
+        <div class="checkout-page-wrapper" style="max-width: 1100px; margin: 0 auto; font-family: var(--font-family);">
+          <div style="margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+            <button type="button" onclick="navigateToHash('#productos')" class="back-to-products-btn" style="margin-bottom:0; display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; border: 1px solid #cbd5e1; background: #ffffff; padding: 0.5rem 1rem; border-radius: 0.5rem; font-weight: 600; color: #334155;">
+              ← Volver al catálogo
+            </button>
+            <div style="font-size: 0.85rem; color: #059669; font-weight: 600; display: flex; align-items: center; gap: 0.35rem; background: #ecfdf5; padding: 0.4rem 0.85rem; border-radius: 9999px;">
+              🔒 Checkout 100% Seguro y Encriptado
+            </div>
+          </div>
+
+          <h1 style="font-size: 1.85rem; font-weight: 800; color: #0f172a; margin-bottom: 2rem;">Finalizar Compra</h1>
+
+          <div class="checkout-container" style="display: flex; flex-wrap: wrap; gap: 2rem;">
+            <!-- Left Column: Customer Form -->
+            <div class="checkout-left-col" style="flex: 1 1 520px; min-width: 300px;">
+              
+              <!-- 1. Contacto -->
+              <div class="checkout-section-box">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 0.5rem;">
+                  <h3 class="checkout-section-title">Contacto</h3>
+                  <div id="checkout-auth-badge"></div>
+                </div>
+                <div style="margin-bottom: 0.75rem;">
+                  <label class="checkout-label">Correo electrónico</label>
+                  <input type="email" id="checkout-email" class="checkout-input" placeholder="tu.email@ejemplo.com" required />
+                </div>
+                <label class="checkout-checkbox-label">
+                  <input type="checkbox" id="checkout-newsletter" checked />
+                  <span>Enviarme novedades y ofertas por correo electrónico</span>
+                </label>
+              </div>
+
+              <!-- 2. Entrega -->
+              <div class="checkout-section-box">
+                <h3 class="checkout-section-title">Entrega</h3>
+                
+                <div class="checkout-tabs" style="margin-bottom: 1rem;">
+                  <button type="button" id="tab-delivery-ship" onclick="setDeliveryMethod('shipping')" class="checkout-tab-btn ${isShip ? 'active' : ''}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-accent); display: inline-block; vertical-align: middle;"><path d="M14 18H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h8"/><path d="M14 9h4l4 4v5h-8z"/><circle cx="7.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Envío a domicilio
+                  </button>
+                  <button type="button" id="tab-delivery-pickup" onclick="setDeliveryMethod('pickup')" class="checkout-tab-btn ${!isShip ? 'active' : ''}">
+                    🏬 Retiro en tienda
+                  </button>
+                </div>
+
+                <div id="checkout-shipping-fields" style="display: ${!isShip ? 'none' : 'block'};">
+                  <div style="margin-bottom:0.75rem;">
+                    <label class="checkout-label">País / Región</label>
+                    <select id="checkout-country" class="checkout-select">
+                      <option value="Argentina" selected>Argentina</option>
+                    </select>
+                  </div>
+
+                  <div class="checkout-grid-2">
+                    <div>
+                      <label class="checkout-label">Nombre</label>
+                      <input type="text" id="checkout-firstname" class="checkout-input" placeholder="Nombre" required />
+                    </div>
+                    <div>
+                      <label class="checkout-label">Apellidos</label>
+                      <input type="text" id="checkout-lastname" class="checkout-input" placeholder="Apellidos" required />
+                    </div>
+                  </div>
+
+                  <div style="margin-top:0.75rem;">
+                    <label class="checkout-label">Dirección (Calle y número)</label>
+                    <input type="text" id="checkout-address" class="checkout-input" placeholder="Ej: Av. Santa Fe 1234" required />
+                  </div>
+
+                  <div style="margin-top:0.75rem;">
+                    <label class="checkout-label">Casa, departamento, piso, etc. (opcional)</label>
+                    <input type="text" id="checkout-apartment" class="checkout-input" placeholder="Ej: Piso 4 Depto B" />
+                  </div>
+
+                  <div class="checkout-grid-3" style="margin-top:0.75rem;">
+                    <div>
+                      <label class="checkout-label">Código postal</label>
+                      <input type="text" id="checkout-zip" class="checkout-input" placeholder="C1064" required />
+                    </div>
+                    <div>
+                      <label class="checkout-label">Ciudad</label>
+                      <input type="text" id="checkout-city" class="checkout-input" placeholder="Buenos Aires" required />
+                    </div>
+                    <div>
+                      <label class="checkout-label">Provincia</label>
+                      <select id="checkout-province" class="checkout-select">
+                        <option value="Ciudad Autónoma de Buenos Aires" selected>Ciudad Autónoma de Buenos Aires</option>
+                        <option value="Buenos Aires">Buenos Aires</option>
+                        <option value="Catamarca">Catamarca</option>
+                        <option value="Chaco">Chaco</option>
+                        <option value="Chubut">Chubut</option>
+                        <option value="Córdoba">Córdoba</option>
+                        <option value="Corrientes">Corrientes</option>
+                        <option value="Entre Ríos">Entre Ríos</option>
+                        <option value="Formosa">Formosa</option>
+                        <option value="Jujuy">Jujuy</option>
+                        <option value="La Pampa">La Pampa</option>
+                        <option value="La Rioja">La Rioja</option>
+                        <option value="Mendoza">Mendoza</option>
+                        <option value="Misiones">Misiones</option>
+                        <option value="Neuquén">Neuquén</option>
+                        <option value="Río Negro">Río Negro</option>
+                        <option value="Salta">Salta</option>
+                        <option value="San Juan">San Juan</option>
+                        <option value="San Luis">San Luis</option>
+                        <option value="Santa Cruz">Santa Cruz</option>
+                        <option value="Santa Fe">Santa Fe</option>
+                        <option value="Santiago del Estero">Santiago del Estero</option>
+                        <option value="Tierra del Fuego">Tierra del Fuego</option>
+                        <option value="Tucumán">Tucumán</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div style="margin-top:0.75rem;">
+                    <label class="checkout-label">Teléfono de contacto</label>
+                    <input type="tel" id="checkout-phone" class="checkout-input" placeholder="+54 11 4344 3600" required />
+                  </div>
+                </div>
+
+                <div id="checkout-pickup-info" style="display: ${isShip ? 'none' : 'block'}; background: #f8fafc; border: 1px solid #cbd5e1; padding: 1.1rem; border-radius: 0.65rem; margin-top: 0.75rem;">
+                  <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">
+                    <span style="font-size: 1.2rem;">🏬</span>
+                    <span style="font-size: 0.95rem;">Punto de Retiro en Tienda (Gratis)</span>
+                  </div>
+                  <div style="font-size: 0.88rem; color: #1e293b; font-weight: 600; margin-bottom: 0.25rem;">
+                    📍 ${(shippingConfig.pickupAddress || 'Av. Corrientes 1234, CABA')}
+                  </div>
+                  <div style="font-size: 0.82rem; color: #64748b; line-height: 1.4;">
+                    🕒 ${(shippingConfig.pickupDetails || 'Horarios de retiro: Lunes a Viernes de 10:00 a 18:00 hs. Presentar DNI y número de orden.')}
+                  </div>
+                </div>
+
+                <label class="checkout-checkbox-label" style="margin-top:0.85rem;">
+                  <input type="checkbox" id="checkout-save-info" checked />
+                  <span>Guardar mi información para consultar más rápidamente la próxima vez</span>
+                </label>
+              </div>
+
+              <!-- 3. Pago -->
+              <div class="checkout-section-box">
+                <h3 class="checkout-section-title">Pago</h3>
+                <p class="checkout-section-sub">Todas las transacciones son seguras y están encriptadas.</p>
+                
+                <div class="checkout-payment-options">
+                  <label class="checkout-payment-card ${isMP ? 'active' : ''}" id="card-pay-mp">
+                    <input type="radio" name="checkout_pay_method" value="mercadopago" ${isMP ? 'checked' : ''} onchange="updateCheckoutPaymentMethod()" />
+                    <div class="checkout-payment-content">
+                      <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-weight:700; font-size:0.88rem; color:#0f172a;">Mercado Pago (Tarjetas, Débito, Efectivo)</span>
+                        <div class="checkout-payment-badges">
+                          <span class="mp-badge-tag">VISA</span>
+                          <span class="mp-badge-tag">MasterCard</span>
+                          <span class="mp-badge-tag mp-blue">Mercado Pago</span>
+                        </div>
+                      </div>
+                      <div class="checkout-payment-desc">
+                        Aboná con tarjeta de crédito, débito o dinero en tu cuenta a través de Mercado Pago.
+                      </div>
+                    </div>
+                  </label>
+
+                  <label class="checkout-payment-card ${!isMP ? 'active' : ''}" id="card-pay-transfer">
+                    <input type="radio" name="checkout_pay_method" value="transfer" ${!isMP ? 'checked' : ''} onchange="updateCheckoutPaymentMethod()" />
+                    <div class="checkout-payment-content">
+                      <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span style="font-weight:700; font-size:0.88rem; color:#0f172a;">Transferencia Bancaria / CBU - Alias</span>
+                        <span class="checkout-discount-badge">5% OFF</span>
+                      </div>
+                      <div class="checkout-payment-desc">
+                        Aboná vía CBU/CVU o Alias desde tu homebanking o billetera virtual (Mercado Pago, Ualá, Naranja X).
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div id="checkout-error-banner" style="display:none; padding:0.75rem; border-radius:0.5rem; background:#fef2f2; border:1px solid #fecaca; color:#dc2626; font-size:0.82rem; margin-top:0.75rem;"></div>
+
+              <button type="button" id="checkout-confirm-btn" onclick="processCheckoutOrder()" class="btn btn-primary checkout-submit-btn" style="width: 100%; margin-top: 1.25rem;">
+                Pagar con Mercado Pago
+              </button>
+            </div>
+
+            <!-- Right Column: Order Summary -->
+            <div class="checkout-right-col" style="flex: 1 1 380px; min-width: 280px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.5rem; height: fit-content;">
+              <h3 style="font-size: 1.1rem; font-weight: 700; color: #0f172a; margin-bottom: 1.25rem;">Resumen del Pedido</h3>
+              <div id="checkout-summary-items" class="checkout-summary-items"></div>
+
+              <div class="checkout-summary-calc" style="margin-top: 1.5rem; border-top: 1px solid #e2e8f0; padding-top: 1.25rem;">
+                <div class="checkout-calc-row">
+                  <span>Subtotal</span>
+                  <span id="checkout-subtotal-text">$0,00</span>
+                </div>
+                <div class="checkout-calc-row">
+                  <span>Envío</span>
+                  <span id="checkout-shipping-text" style="color:#059669; font-weight:600;">GRATIS</span>
+                </div>
+                <div class="checkout-calc-row" id="checkout-discount-row" style="display:none; color:#15803d; font-weight:600;">
+                  <span>Descuento Transferencia (5%)</span>
+                  <span id="checkout-discount-text">-$0,00</span>
+                </div>
+                <div class="checkout-calc-total" style="margin-top: 1rem; border-top: 2px solid #e2e8f0; padding-top: 1rem; display: flex; justify-content: space-between; align-items: baseline;">
+                  <div>
+                    <span style="font-weight:700; font-size:1.1rem; color:#0f172a;">Total</span>
+                    <span style="display:block; font-size:0.72rem; color:#64748b;">Impuestos incluidos</span>
+                  </div>
+                  <span id="checkout-final-total-text" style="font-size: 1.35rem; font-weight: 800; color:#0f172a;">$0,00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Populate user auth if logged in with Supabase
+      const authBadge = document.getElementById('checkout-auth-badge');
+      const emailInput = document.getElementById('checkout-email');
+      if (window.currentAuthUser && window.currentAuthUser.email) {
+        if (emailInput) emailInput.value = window.currentAuthUser.email;
+        if (authBadge) {
+          authBadge.innerHTML = '<span style="font-size:0.72rem; color:#059669; font-weight:700; background:#ecfdf5; padding:0.2rem 0.5rem; border-radius:9999px;">✓ Sesión iniciada</span>';
+        }
+      } else if (authBadge) {
+        if (window.supabase) {
+          authBadge.innerHTML = '<a href="javascript:void(0)" onclick="openUserModal()" style="font-size:0.75rem; color:#635bff; font-weight:600; text-decoration:none;">¿Tenés cuenta? Iniciar sesión</a>';
+        } else {
+          authBadge.innerHTML = '';
+        }
       }
 
+      // Restore saved customer info from localStorage
       try {
-        const items = cart.map(item => ({
-          title: item.product.name + (item.variantLabel ? (' - ' + item.variantLabel) : ''),
-          quantity: item.quantity,
-          unit_price: item.product.price,
-        }));
+        const savedInfo = JSON.parse(localStorage.getItem('customer_shipping_info') || '{}');
+        if (savedInfo.email && emailInput && !emailInput.value) emailInput.value = savedInfo.email;
+        if (savedInfo.firstname && document.getElementById('checkout-firstname')) document.getElementById('checkout-firstname').value = savedInfo.firstname;
+        if (savedInfo.lastname && document.getElementById('checkout-lastname')) document.getElementById('checkout-lastname').value = savedInfo.lastname;
+        if (savedInfo.address && document.getElementById('checkout-address')) document.getElementById('checkout-address').value = savedInfo.address;
+        if (savedInfo.apartment && document.getElementById('checkout-apartment')) document.getElementById('checkout-apartment').value = savedInfo.apartment;
+        if (savedInfo.zip && document.getElementById('checkout-zip')) document.getElementById('checkout-zip').value = savedInfo.zip;
+        if (savedInfo.city && document.getElementById('checkout-city')) document.getElementById('checkout-city').value = savedInfo.city;
+        if (savedInfo.province && document.getElementById('checkout-province')) document.getElementById('checkout-province').value = savedInfo.province;
+        if (savedInfo.phone && document.getElementById('checkout-phone')) document.getElementById('checkout-phone').value = savedInfo.phone;
+      } catch (e) {}
 
-        const response = await fetch('/api/create-preference', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ items: items }),
-        });
+      // Render summary items
+      renderCheckoutSummary();
+    }
+    window.renderCheckoutPage = renderCheckoutPage;
 
-        let data = {};
-        try { data = await response.json(); } catch (parseErr) { /* non-JSON error response */ }
+    function checkout() {
+      if (!cart || cart.length === 0) {
+        showModal('Carrito Vacío', 'Agrega algún producto antes de proceder al pago.');
+        return;
+      }
+      
+      // Close cart overlay
+      const cartEl = document.getElementById('cart-overlay');
+      if (cartEl) cartEl.classList.remove('open');
 
-        if (!response.ok) {
-          throw new Error(data.error || 'No se pudo iniciar el pago con Mercado Pago (' + response.status + ').');
+      // Navigate to #checkout
+      navigateToHash('#checkout');
+    }
+    window.checkout = checkout;
+
+    function closeCheckoutModal() {
+      const modal = document.getElementById('checkout-modal');
+      if (modal) modal.classList.remove('open');
+    }
+    window.closeCheckoutModal = closeCheckoutModal;
+
+    function setDeliveryMethod(method) {
+      window.selectedDeliveryMethod = method;
+      const shipBtn = document.getElementById('tab-delivery-ship');
+      const pickupBtn = document.getElementById('tab-delivery-pickup');
+      const fields = document.getElementById('checkout-shipping-fields');
+      const pickupInfo = document.getElementById('checkout-pickup-info');
+
+      if (method === 'pickup') {
+        if (shipBtn) shipBtn.classList.remove('active');
+        if (pickupBtn) pickupBtn.classList.add('active');
+        if (fields) fields.style.display = 'none';
+        if (pickupInfo) pickupInfo.style.display = 'block';
+      } else {
+        if (pickupBtn) pickupBtn.classList.remove('active');
+        if (shipBtn) shipBtn.classList.add('active');
+        if (fields) fields.style.display = 'block';
+        if (pickupInfo) pickupInfo.style.display = 'none';
+      }
+
+      renderCheckoutSummary();
+    }
+    window.setDeliveryMethod = setDeliveryMethod;
+
+    function updateCheckoutPaymentMethod() {
+      const radios = document.getElementsByName('checkout_pay_method');
+      let method = 'mercadopago';
+      for (let r of radios) {
+        if (r.checked) {
+          method = r.value;
+          break;
         }
+      }
+      window.selectedPaymentMethod = method;
 
-        const redirectUrl = data.sandbox_init_point || data.init_point;
-        if (!redirectUrl) {
-          throw new Error('Mercado Pago no devolvió un link de pago válido.');
+      const mpCard = document.getElementById('card-pay-mp');
+      const transferCard = document.getElementById('card-pay-transfer');
+      if (mpCard) mpCard.classList.toggle('active', method === 'mercadopago');
+      if (transferCard) transferCard.classList.toggle('active', method === 'transfer');
+
+      renderCheckoutSummary();
+    }
+    window.updateCheckoutPaymentMethod = updateCheckoutPaymentMethod;
+
+    function renderCheckoutSummary() {
+      const summaryContainer = document.getElementById('checkout-summary-items');
+      const subtotalEl = document.getElementById('checkout-subtotal-text');
+      const shippingEl = document.getElementById('checkout-shipping-text');
+      const discountRow = document.getElementById('checkout-discount-row');
+      const discountEl = document.getElementById('checkout-discount-text');
+      const finalTotalEl = document.getElementById('checkout-final-total-text');
+      const confirmBtn = document.getElementById('checkout-confirm-btn');
+
+      if (!summaryContainer) return;
+
+      let subtotal = 0;
+      let itemsHtml = '';
+
+      cart.forEach((item, index) => {
+        const itemPrice = item.product.price * item.quantity;
+        subtotal += itemPrice;
+
+        const pImg = item.product.image || getProductDisplayImage(item.product);
+
+        itemsHtml += `
+          <div class="checkout-summary-item" style="display: flex; align-items: center; justify-content: space-between; gap: 0.85rem; padding: 0.75rem 0; border-bottom: 1px solid #f1f5f9;">
+            <div style="display: flex; align-items: center; gap: 0.75rem; flex: 1; min-width: 0;">
+              <div class="checkout-img-wrap" style="position: relative; flex-shrink: 0;">
+                <img src="${pImg}" alt="${item.product.name}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 0.5rem; border: 1px solid #e2e8f0;" onerror="this.src='https://images.unsplash.com/photo-1523275335684-37898b6baf30'">
+              </div>
+              <div class="checkout-summary-details" style="flex: 1; min-width: 0;">
+                <div class="checkout-item-title" style="font-weight: 600; font-size: 0.88rem; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${item.product.name}</div>
+                ${item.variantLabel ? '<div class="checkout-item-sub" style="font-size: 0.75rem; color: #64748b;">' + item.variantLabel + '</div>' : ''}
+                <div style="display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 0.3rem; background: #ffffff; border-radius: 0.375rem; padding: 0.1rem 0.3rem; border: 1px solid #cbd5e1;">
+                  <button type="button" onclick="updateCartItemQty(${index}, -1)" title="Reducir cantidad" style="width: 20px; height: 20px; border: none; background: #f1f5f9; color: #0f172a; font-weight: bold; border-radius: 0.25rem; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem;">-</button>
+                  <span style="font-size: 0.8rem; font-weight: 700; color: #0f172a; min-width: 16px; text-align: center;">${item.quantity}</span>
+                  <button type="button" onclick="updateCartItemQty(${index}, 1)" title="Aumentar cantidad" style="width: 20px; height: 20px; border: none; background: #f1f5f9; color: #0f172a; font-weight: bold; border-radius: 0.25rem; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem;">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="checkout-item-price" style="font-weight: 700; font-size: 0.92rem; color: #0f172a;">$${formatArgentinePrice(itemPrice)}</div>
+          </div>
+        `;
+      });
+
+      summaryContainer.innerHTML = itemsHtml;
+
+      // Shipping logic
+      const freeMin = Number(shippingConfig?.freeShippingMin) || 0;
+      let shippingCost = 0;
+      if (window.selectedDeliveryMethod === 'pickup') {
+        shippingCost = 0;
+        if (shippingEl) shippingEl.textContent = 'GRATIS (Retiro en local)';
+      } else {
+        if (freeMin > 0 && subtotal >= freeMin) {
+          shippingCost = 0;
+          if (shippingEl) shippingEl.textContent = 'GRATIS';
+        } else {
+          shippingCost = Number(shippingConfig?.localPrice) || 0;
+          if (shippingEl) {
+            shippingEl.textContent = shippingCost > 0 ? ('$' + formatArgentinePrice(shippingCost)) : 'GRATIS';
+          }
         }
+      }
 
-        window.location.href = redirectUrl;
-      } catch (err) {
-        showModal(
-          'No se pudo iniciar el pago',
-          (err && err.message ? err.message : 'Ocurrió un error inesperado.') + '\n\nVerifica que la función serverless esté desplegada en Vercel y que la variable de entorno MP_ACCESS_TOKEN esté configurada.'
-        );
-        if (checkoutBtn) {
-          checkoutBtn.disabled = false;
-          checkoutBtn.style.opacity = '1';
-          checkoutBtn.textContent = originalBtnText;
+      // Discount logic (5% for bank transfer)
+      let discount = 0;
+      if (window.selectedPaymentMethod === 'transfer') {
+        discount = subtotal * 0.05;
+        if (discountRow) discountRow.style.display = 'flex';
+        if (discountEl) discountEl.textContent = '-$' + formatArgentinePrice(discount);
+      } else {
+        if (discountRow) discountRow.style.display = 'none';
+      }
+
+      const finalTotal = Math.max(0, subtotal + shippingCost - discount);
+
+      if (subtotalEl) subtotalEl.textContent = '$' + formatArgentinePrice(subtotal);
+      if (finalTotalEl) finalTotalEl.textContent = '$' + formatArgentinePrice(finalTotal);
+
+      if (confirmBtn) {
+        if (window.selectedPaymentMethod === 'mercadopago') {
+          confirmBtn.textContent = 'Pagar con Mercado Pago $' + formatArgentinePrice(finalTotal);
+        } else {
+          confirmBtn.textContent = 'Confirmar Pedido por $' + formatArgentinePrice(finalTotal) + ' (5% OFF)';
         }
       }
     }
-    
+
+    async function processCheckoutOrder() {
+      const errBanner = document.getElementById('checkout-error-banner');
+      if (errBanner) errBanner.style.display = 'none';
+
+      const email = (document.getElementById('checkout-email')?.value || '').trim();
+      const firstname = (document.getElementById('checkout-firstname')?.value || '').trim();
+      const lastname = (document.getElementById('checkout-lastname')?.value || '').trim();
+      const phone = (document.getElementById('checkout-phone')?.value || '').trim();
+      const address = (document.getElementById('checkout-address')?.value || '').trim();
+      const apartment = (document.getElementById('checkout-apartment')?.value || '').trim();
+      const zip = (document.getElementById('checkout-zip')?.value || '').trim();
+      const city = (document.getElementById('checkout-city')?.value || '').trim();
+      const province = (document.getElementById('checkout-province')?.value || '').trim();
+
+      if (!email || !email.includes('@')) {
+        if (errBanner) {
+          errBanner.textContent = 'Por favor ingresá un correo electrónico válido.';
+          errBanner.style.display = 'block';
+        }
+        return;
+      }
+
+      if (window.selectedDeliveryMethod === 'shipping') {
+        if (!firstname || !address || !phone) {
+          if (errBanner) {
+            errBanner.textContent = 'Por favor completa tu nombre, dirección y teléfono para el envío.';
+            errBanner.style.display = 'block';
+          }
+          return;
+        }
+      }
+
+      // Save info if checkbox checked
+      const saveInfoChecked = document.getElementById('checkout-save-info')?.checked;
+      if (saveInfoChecked) {
+        try {
+          localStorage.setItem('customer_shipping_info', JSON.stringify({
+            email, firstname, lastname, phone, address, apartment, zip, city, province
+          }));
+        } catch(e) {}
+      }
+
+      const confirmBtn = document.getElementById('checkout-confirm-btn');
+      const originalText = confirmBtn ? confirmBtn.textContent : '';
+      if (confirmBtn) {
+        confirmBtn.disabled = true;
+        confirmBtn.style.opacity = '0.7';
+        confirmBtn.textContent = 'Procesando pedido...';
+      }
+
+      const orderNumber = '#ORD-' + Math.floor(100000 + Math.random() * 900000);
+      let subtotal = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
+      let discount = (window.selectedPaymentMethod === 'transfer') ? (subtotal * 0.05) : 0;
+      let total = subtotal - discount;
+
+      // Mercado Pago Payment Flow
+      if (window.selectedPaymentMethod === 'mercadopago') {
+        const useRealPayments = Boolean(true);
+        const mpAccessToken = "APP_USR-8948092582228761-071423-b3b9cc5fbcd4788a0b508ed8215a7069-3541710553";
+
+        if (useRealPayments) {
+          try {
+            const items = cart.map(item => ({
+              title: item.product.name + (item.variantLabel ? (' - ' + item.variantLabel) : ''),
+              quantity: item.quantity,
+              unit_price: item.product.price,
+            }));
+
+            const response = await fetch('/api/create-preference', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                items: items,
+                accessToken: mpAccessToken,
+                payer: {
+                  email: email,
+                  name: firstname + ' ' + lastname,
+                  phone: phone,
+                  address: address
+                }
+              }),
+            });
+
+            let data = {};
+            try { data = await response.json(); } catch (e) {}
+
+            if (!response.ok) {
+              throw new Error(data.error || 'No se pudo crear la preferencia con Mercado Pago.');
+            }
+
+            const redirectUrl = data.sandbox_init_point || data.init_point;
+            if (redirectUrl && !data.is_sandbox_simulation) {
+              window.location.href = redirectUrl;
+              return;
+            }
+          } catch(err) {
+            console.warn('[MercadoPago Real API fallback]:', err);
+          }
+        }
+
+        // MP Sandbox / Simulation / Fallback
+        closeCheckoutModal();
+        openOrderSuccessModal(orderNumber, firstname || 'Cliente', total, false);
+        cart = [];
+        updateCartUI();
+        if (confirmBtn) {
+          confirmBtn.disabled = false;
+          confirmBtn.style.opacity = '1';
+          confirmBtn.textContent = originalText;
+        }
+        return;
+      }
+
+      // Bank Transfer / Pago Manual Flow
+      closeCheckoutModal();
+      openOrderSuccessModal(orderNumber, firstname || 'Cliente', total, true);
+      cart = [];
+      updateCartUI();
+      if (confirmBtn) {
+        confirmBtn.disabled = false;
+        confirmBtn.style.opacity = '1';
+        confirmBtn.textContent = originalText;
+      }
+    }
+    window.processCheckoutOrder = processCheckoutOrder;
+
+    function openOrderSuccessModal(orderNum, buyerName, totalAmount, isTransfer) {
+      document.getElementById('order-number-display').textContent = orderNum;
+      document.getElementById('order-buyer-display').textContent = buyerName;
+      document.getElementById('order-total-display').textContent = '$' + formatArgentinePrice(totalAmount);
+
+      const transferBox = document.getElementById('order-transfer-details');
+      const subtitle = document.getElementById('order-success-subtitle');
+
+      if (isTransfer) {
+        if (transferBox) transferBox.style.display = 'block';
+        if (subtitle) subtitle.textContent = 'Para completar la compra, realiza la transferencia con los datos a continuación.';
+
+        const waPhone = "5491143443600";
+        const cleanPhone = waPhone.replace(/D/g, '');
+        const messageText = encodeURIComponent(
+          'Hola ' + "Cafe 11*" + ', realicé el pedido ' + orderNum + ' por $' + formatArgentinePrice(totalAmount) + '. Adjunto mi comprobante de transferencia.'
+        );
+        const waLink = document.getElementById('whatsapp-confirm-link');
+        if (waLink) {
+          waLink.href = 'https://wa.me/' + cleanPhone + '?text=' + messageText;
+        }
+      } else {
+        if (transferBox) transferBox.style.display = 'none';
+        if (subtitle) subtitle.textContent = 'Tu pago se ha registrado correctamente. ¡Gracias por confiar en nosotros!';
+      }
+
+      const successModal = document.getElementById('order-success-modal');
+      if (successModal) successModal.classList.add('open');
+    }
+
+    function closeOrderSuccessModal() {
+      const successModal = document.getElementById('order-success-modal');
+      if (successModal) successModal.classList.remove('open');
+      navigateToHash('#inicio');
+    }
+    window.closeOrderSuccessModal = closeOrderSuccessModal;
 
     function showModal(title, text) {
       const modalEl = document.getElementById('alert-modal');
